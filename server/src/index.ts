@@ -13,7 +13,7 @@ const allowedOrigins = [
   "https://levitation-frontend-self.vercel.app",
   "http://localhost:5173",
 ];
-
+ 
 // CORS Configuration
 app.use(
   cors({
