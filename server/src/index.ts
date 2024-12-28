@@ -10,7 +10,7 @@ const port = process.env.PORT || 4000;
 
 const allowedOrigins = [
   "https://levitation-frontend-self.vercel.app",
-  "http://localhost:5173", // Add the new origin here
+  "http://localhost:5173",
 ];
 
 app.use(
@@ -28,7 +28,7 @@ app.use(
 );
 
 // Handle preflight requests
-app.options("*", cors());
+app.options('*', cors());
 
 app.use(express.json({ limit: "10mb" }));
 app.use(
