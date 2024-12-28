@@ -15,6 +15,8 @@ app.use(
   })
 );
 
+app.options('*', cors()); // Enable preflight requests for all routes
+
 app.use(express.json({ limit: "10mb" }));
 app.use(
   express.urlencoded({
@@ -25,5 +27,5 @@ app.use("/api/auth", authRoute);
 app.use("/api/products", productsRoute);
 
 app.listen(port, () => {
-  console.log(`app is listening on port: http://localhost:${port}`);
+  console.log(`app is listening on port: ${port}`);
 });
