@@ -9,13 +9,16 @@ const app = express();
 const port = process.env.PORT || 4000;
 app.use(
   cors({
-    origin: "https://levitation-frontend-self.vercel.app",
+    origin: [
+      "https://levitation-frontend-self.vercel.app",
+      "http://localhost:5173",
+    ],
     methods: "GET, POST, PUT, DELETE",
     credentials: true,
   })
 );
 
-app.options('*', cors()); // Enable preflight requests for all routes
+app.options("*", cors()); // Enable preflight requests for all routes
 
 app.use(express.json({ limit: "10mb" }));
 app.use(
