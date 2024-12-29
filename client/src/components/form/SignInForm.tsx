@@ -21,7 +21,6 @@ export default function SignInForm() {
       if (res?.message === "User logged in successfully") {
         console.log(res);
         navigation("/home");
-        // console.log(data);
         localStorage.setItem("isLoggedIn", "true");
         localStorage.setItem("userData", JSON.stringify(res.data));
         setLogin(true);
@@ -32,16 +31,20 @@ export default function SignInForm() {
   };
 
   return (
-    <div className="text-white w-[80%]">
-      <h1 className="text-4xl font-bold my-3">Let the Journey Begin!</h1>
-      <h4 className="text-[#B8B8B8] mb-6">
-        This is basic signup page which is used for levitation <br /> assignment
-        purpose.
+    <div className="text-white w-full max-w-md mx-auto px-4 sm:px-6">
+      <h1 className="text-3xl sm:text-4xl font-bold my-3">
+        Let the Journey Begin!
+      </h1>
+      <h4 className="text-[#B8B8B8] mb-6 text-sm sm:text-base">
+        This is a basic signup page used for levitation <br /> assignment
+        purposes.
       </h4>
       <form onSubmit={handleSubmit(onSubmit)} className="text-white">
         {/* Email Field */}
         <div className="my-4">
-          <label className="block my-1">Email Address</label>
+          <label className="block my-1 text-sm sm:text-base">
+            Email Address
+          </label>
           <input
             type="email"
             {...register("email", {
@@ -51,18 +54,19 @@ export default function SignInForm() {
                 message: "Invalid email format",
               },
             })}
-            className="border border-[#424647] p-4 w-full rounded bg-[#1F1F1F] placeholder:font-thin outline-none"
+            className="border border-[#424647] p-3 sm:p-4 w-full rounded bg-[#1F1F1F] placeholder:font-thin outline-none text-sm sm:text-base"
             placeholder="Enter Email ID"
           />
-          {/* {errors.email && <span className="text-red-600">{errors.email.message}</span>} */}
-          <span className="text-[#B8B8B8] font-thin">
+          <span className="text-[#B8B8B8] font-thin text-xs sm:text-sm">
             This email will be displayed with your inquiry
           </span>
         </div>
 
         {/* Password Field */}
         <div className="my-4">
-          <label className="block my-1">Current Password</label>
+          <label className="block my-1 text-sm sm:text-base">
+            Password
+          </label>
           <input
             type="password"
             {...register("password", {
@@ -72,22 +76,19 @@ export default function SignInForm() {
                 message: "Password must be at least 6 characters long",
               },
             })}
-            className="border border-[#424647] p-4 w-full rounded bg-[#1F1F1F] placeholder:font-thin outline-none"
+            className="border border-[#424647] p-3 sm:p-4 w-full rounded bg-[#1F1F1F] placeholder:font-thin outline-none text-sm sm:text-base"
             placeholder="Enter the password"
           />
-          {/* {errors.password && <span className="text-red-600">{errors.password.message}</span>} */}
-          {/* <span className='text-[#B8B8B8] font-thin'>Any further updates will be forwarded on this Email ID</span> */}
         </div>
 
         {/* Submit Button */}
-        <div className="mt-8">
+        <div className="mt-8 flex flex-col sm:flex-row sm:items-center sm:justify-between">
           <button
             type="submit"
-            className="bg-[#1F1F1F] py-4 px-6 rounded-lg text-[#CCF575] transition-all ease-in-out duration-500 hover:bg-gradient-to-r hover:from-black hover:to-[#1F1F1F] transform"
+            className="bg-[#1F1F1F] py-3 sm:py-4 px-6 rounded-lg text-[#CCF575] transition-all ease-in-out duration-500 hover:bg-gradient-to-r hover:from-black hover:to-[#1F1F1F] transform w-full sm:w-auto"
           >
             Login now
           </button>
-          <span className="text-[#B8B8B8] px-5">Forget password?</span>
         </div>
       </form>
     </div>

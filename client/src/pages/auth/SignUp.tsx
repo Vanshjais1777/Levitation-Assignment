@@ -22,12 +22,22 @@ const SignUp = () => {
           </button>
         }
       />
-      <div className="absolute top-32 -right-56  w-[30%] h-[30%] rounded-full bg-[#4F59A8] mix-blend-screen filter blur-3xl opacity-30"></div>
-      <div className="absolute -bottom-16 -left-44  w-[35%] h-[60%] rounded-full bg-[#CCF575] mix-blend-screen filter blur-3xl opacity-25 overflow-hidden"></div>
+      {/* Decorative Background Circles */}
+      <div className="absolute top-32 -right-56 w-[30%] h-[30%] rounded-full bg-[#4F59A8] mix-blend-screen filter blur-3xl opacity-30"></div>
+      <div className="absolute -bottom-16 -left-44 w-[35%] h-[60%] rounded-full bg-[#CCF575] mix-blend-screen filter blur-3xl opacity-25 overflow-hidden"></div>
+      {/* Main Content */}
       <div className="flex justify-center z-20 relative">
-        <div className="container grid grid-cols-2 gap-10 items-center h-[90vh]">
-          <img src={bodyImage} alt="body image" className="h-[83vh]" />
-          <SignUpForm />
+        <div className="container grid grid-cols-1 md:grid-cols-2 gap-10 items-center h-auto md:h-[90vh] p-4">
+          {/* Responsive Image */}
+          <img
+            src={bodyImage}
+            alt="body image"
+            className="h-60 w-full md:h-[83vh] md:w-auto object-cover"
+          />
+          {/* Sign Up Form */}
+          <div className="w-full">
+            <SignUpForm />
+          </div>
         </div>
       </div>
     </div>

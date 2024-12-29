@@ -103,7 +103,7 @@ export default function PdfPage() {
         navButton={
           <button
             onClick={downloadPdf}
-            className="bg-[#CCF575] rounded-lg px-6 relative transform transition-transform duration-300 hover:-translate-x-4"
+            className="bg-[#CCF575] rounded-lg px-4 py-2 relative transform transition-transform duration-300 hover:-translate-x-4 text-sm md:text-base"
             disabled={loading}
           >
             {loading ? "Loading..." : "Download PDF"}
@@ -113,58 +113,60 @@ export default function PdfPage() {
 
       {/* Main content */}
       <div
-        className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden min-h-[297mm]"
+        className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden min-h-[297mm] p-4 sm:p-6 md:p-10"
         id="pdf-section"
         ref={pdfRef}
       >
-        <div className="border-b py-3 flex justify-center align-middle">
-          <div className="w-[95%] flex justify-between items-center">
-            <h1 className="text-xl font-bold">INVOICE GENERATOR</h1>
-            <img src={logo_dark} alt="logo" className="h-12" />
+        <div className="border-b py-3 flex flex-col sm:flex-row justify-center align-middle">
+          <div className="w-full sm:w-[95%] flex flex-col sm:flex-row justify-between items-center">
+            <h1 className="text-lg sm:text-xl font-bold">INVOICE GENERATOR</h1>
+            <img src={logo_dark} alt="logo" className="h-10 sm:h-12" />
           </div>
         </div>
-        <div className="px-10 py-8">
-          <div className="bg-[url('./assets/images/banner-image.png')] bg-cover text-white rounded-xl p-6 mb-6">
-            <div className="flex justify-between mb-2">
+        <div className="px-2 sm:px-6 md:px-10 py-8">
+          <div className="bg-[url('./assets/images/banner-image.png')] bg-cover text-white rounded-xl p-4 sm:p-6 mb-6">
+            <div className="flex flex-col sm:flex-row justify-between mb-2">
               <span>Traveller Name</span>
               <span>Date: {new Date().toLocaleDateString()}</span>
             </div>
-            <div className="text-2xl font-bold mb-1">{userData.name}</div>
+            <div className="text-xl sm:text-2xl font-bold mb-1">{userData.name}</div>
             <div>{userData.email}</div>
           </div>
 
-          <table className="w-full mb-8">
-            <thead>
-              <tr className="bg-gradient-to-r from-[#303661] to-[#263406] text-white">
-                <th className="py-2 px-4 text-left rounded-l-full">Product</th>
-                <th className="py-2 px-4 text-center">Qty</th>
-                <th className="py-2 px-4 text-center">Rate</th>
-                <th className="py-2 px-4 text-right rounded-r-full">
-                  Total Amount
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {products.map((product, index) => (
-                <tr
-                  key={index}
-                  className={`${
-                    index % 2 ? "bg-[#FAFAFA]" : "bg-white"
-                  } rounded-full my-2 shadow-lg`}
-                >
-                  <td className="py-2 px-4 rounded-l-full">{product.name}</td>
-                  <td className="py-2 px-4 text-center">{product.quantity}</td>
-                  <td className="py-2 px-4 text-center">{product.price}</td>
-                  <td className="py-2 px-4 text-right rounded-r-full">
-                    INR {(product.price * product.quantity).toFixed(2)}
-                  </td>
+          <div className="overflow-x-auto">
+            <table className="w-full mb-8">
+              <thead>
+                <tr className="bg-gradient-to-r from-[#303661] to-[#263406] text-white">
+                  <th className="py-2 px-4 text-left rounded-l-full">Product</th>
+                  <th className="py-2 px-4 text-center">Qty</th>
+                  <th className="py-2 px-4 text-center">Rate</th>
+                  <th className="py-2 px-4 text-right rounded-r-full">
+                    Total Amount
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {products.map((product, index) => (
+                  <tr
+                    key={index}
+                    className={`${
+                      index % 2 ? "bg-[#FAFAFA]" : "bg-white"
+                    } rounded-full my-2 shadow-lg`}
+                  >
+                    <td className="py-2 px-4 rounded-l-full">{product.name}</td>
+                    <td className="py-2 px-4 text-center">{product.quantity}</td>
+                    <td className="py-2 px-4 text-center">{product.price}</td>
+                    <td className="py-2 px-4 text-right rounded-r-full">
+                      INR {(product.price * product.quantity).toFixed(2)}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
 
-          <div className="flex justify-end mt-10">
-            <div className="w-[40%] border border-[#A2A2A2] rounded-lg p-4">
+          <div className="flex flex-col sm:flex-row justify-end mt-10">
+            <div className="w-full sm:w-[40%] border border-[#A2A2A2] rounded-lg p-4">
               <div className="flex justify-between mb-6">
                 <span className="text-[#A2A2A2]">Total Charges</span>
                 <span className="text-[#A2A2A2]">
@@ -186,13 +188,13 @@ export default function PdfPage() {
             </div>
           </div>
 
-          <div className="mt-48 text-sm text-gray-600">
+          <div className="mt-12 text-xs sm:text-sm text-gray-600">
             <p>
               Date: <b>{new Date().toLocaleDateString()}</b>{" "}
             </p>
           </div>
 
-          <div className="mt-32 bg-[#272833] text-white text-sm rounded-full py-3 px-14">
+          <div className="mt-12 sm:mt-32 bg-[#272833] text-white text-xs sm:text-sm rounded-full py-3 px-6 sm:px-14">
             <p>
               We are pleased to provide any further information you may require
               and look forward to assisting with your next order. Rest assured,

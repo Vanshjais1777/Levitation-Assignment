@@ -102,14 +102,16 @@ export default function HomePage() {
           </button>
         }
       />
-      <div className="absolute top-5 left-1/2 -translate-x-1/2  w-[25%] h-[25%] rounded-full bg-[#4F59A8] mix-blend-screen filter blur-3xl opacity-25"></div>
+      <div className="absolute top-5 left-1/2 -translate-x-1/2 w-[25%] h-[25%] rounded-full bg-[#4F59A8] mix-blend-screen filter blur-3xl opacity-25"></div>
       <main className="container mx-auto px-4 py-8 text-white my-auto">
-        <h1 className="text-4xl font-bold mt-20 mb-3">Add Products</h1>
-        <h4 className="text-[#B8B8B8] mb-6">
+        <h1 className="text-4xl font-bold mt-20 mb-3 text-center md:text-left">
+          Add Products
+        </h1>
+        <h4 className="text-[#B8B8B8] mb-6 text-center md:text-left">
           This is basic signup page which is used for levitation <br />{" "}
           assignment purpose.
         </h4>
-        <form onSubmit={handleSubmit(onSubmit)} className=" mb-16">
+        <form onSubmit={handleSubmit(onSubmit)} className="mb-16">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
             <div>
               <label htmlFor="name" className="block text-sm font-medium mb-1">
@@ -160,23 +162,23 @@ export default function HomePage() {
           </div>
           <button
             type="submit"
-            className="flex items-center justify-center px-6 py-4 rounded-lg text-[#CCF575] bg-[#1F1F1F]"
+            className="flex items-center justify-center px-6 py-4 rounded-lg text-[#CCF575] bg-[#1F1F1F] w-full md:w-auto"
           >
             Add Product <PlusCircle className="ml-2 h-4 w-4" />
           </button>
         </form>
         <div className="overflow-x-auto">
-          <table className="w-full text-sm text-left text-gray-300 rounded-tl-lg  rounded-tr-lg overflow-hidden">
-            <thead className="font-thin bg-[#FFFFFFE6] text-black ">
+          <table className="w-full text-sm text-left text-gray-300 rounded-tl-lg rounded-tr-lg overflow-hidden">
+            <thead className="font-thin bg-[#FFFFFFE6] text-black">
               <tr>
                 <th scope="col" className="px-6 py-3">
-                  <div className="flex items-center">
-                    Product name <ArrowUp className="ml-5" />
+                  <div className="flex items-center justify-between md:justify-start">
+                    Product name <ArrowUp className="ml-5 hidden md:block" />
                   </div>
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  <div className="flex items-center">
-                    Quantity <ArrowDown className="ml-4" />
+                  <div className="flex items-center justify-between md:justify-start">
+                    Quantity <ArrowDown className="ml-4 hidden md:block" />
                   </div>
                 </th>
                 <th scope="col" className="px-6 py-3">
