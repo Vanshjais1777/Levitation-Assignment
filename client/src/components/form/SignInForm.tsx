@@ -17,7 +17,8 @@ export default function SignInForm() {
   const onSubmit: SubmitHandler<SigninFormValues> = async (data) => {
     try {
       const res = await signIn(data.email, data.password);
-      if (res?.message === "user login successfully.") {
+      console.log(res);
+      if (res?.message === "User logged in successfully") {
         console.log(res);
         navigation("/home");
         // console.log(data);
