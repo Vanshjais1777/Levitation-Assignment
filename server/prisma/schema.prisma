@@ -8,4 +8,31 @@ generator client {
   previewFeatures = []
 }
 
-// ...existing models...
+// Example Models
+model User {
+  id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  email    String    @unique
+  name     String?
+  password String
+  posts    Post[]    // Relation to the Post model
+  products Product[] // Relation to the Product model
+}
+
+model Post {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  content   String?
+  published Boolean  @default(false)
+  author    User?    @relation(fields: [authorId], references: [id])
+  authorId  String?
+}
+
+model Product {
+  id         String  @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  qty        Int
+  rate       Float
+  totalAmt   Float
+  userId     String
+  user       User    @relation(fields: [userId], references: [id])
+}
