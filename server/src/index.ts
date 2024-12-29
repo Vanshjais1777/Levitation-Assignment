@@ -17,10 +17,19 @@ const allowedOrigins = [
 // CORS Configuration
 app.use(
   cors({
-    origin: "*",
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
   })
 );
 
+// Handle Preflight Requests
 app.options("*", (req, res) => {
   res.header("Access-Control-Allow-Origin", req.headers.origin);
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
@@ -28,14 +37,17 @@ app.options("*", (req, res) => {
   res.sendStatus(200);
 });
 
+// Middleware
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true }));
 
+// Logging Middleware (Optional for Debugging)
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.url}`);
   next();
 });
 
+// Root Route
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
