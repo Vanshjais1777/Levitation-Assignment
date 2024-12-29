@@ -1,13 +1,15 @@
 import { useContext, useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { PlusCircle, ArrowDown, ArrowUp } from "lucide-react";
+import { PlusCircle, ArrowDown, ArrowUp, Trash2 } from "lucide-react"; // Import Trash2 icon
 import Navbar from "../components/shared/Navbar";
 import { createProduct } from "../api/post/createProduct";
+import { deleteProduct } from "../api/delete/deleteProduct"; // Import deleteProduct function
 import UserContext from "../context/UserContext";
 import { getProducts } from "../api/get/getProducts";
 import { useNavigate } from "react-router-dom";
 
 interface Product {
+  id: string; // Add id field
   name: string;
   price: number;
   quantity: number;
@@ -31,14 +33,12 @@ export default function HomePage() {
       try {
         const res = await getProducts(userData.id); // API call to get the products
         if (res?.data) {
-          // console.log(res.data);
-
           const filteredProducts = res.data.map((product: any) => ({
+            id: product.id, // Ensure id is included
             name: product.name,
             price: product.rate as number,
             quantity: product.qty as number,
           }));
-          console.log("filteredProducts are: ", filteredProducts);
           setProducts(filteredProducts); // Set the products in state
         }
       } catch (error) {
@@ -49,7 +49,6 @@ export default function HomePage() {
   }, []);
 
   const onSubmit: SubmitHandler<FormInputs> = async (data) => {
-    setProducts([...products, data]);
     const totalvalue = data.price * data.quantity;
     const res = await createProduct(
       userData.id,
@@ -58,8 +57,19 @@ export default function HomePage() {
       data.price,
       totalvalue
     );
-    console.log(res);
+    if (res?.data) {
+      setProducts([...products, { ...data, id: res.data.id }]); // Add the new product with id
+    }
     reset();
+  };
+
+  const handleDelete = async (productId: string) => {
+    try {
+      await deleteProduct(productId);
+      setProducts(products.filter((product) => product.id !== productId)); // Remove the deleted product from state
+    } catch (error) {
+      console.log("Error deleting product", error);
+    }
   };
 
   const calculateTotal = () => {
@@ -175,6 +185,9 @@ export default function HomePage() {
                 <th scope="col" className="px-6 py-3">
                   Total Price
                 </th>
+                <th scope="col" className="px-6 py-3">
+                  Actions
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -187,6 +200,14 @@ export default function HomePage() {
                   <td className="px-6 py-4">{product.price}</td>
                   <td className="px-6 py-4">
                     INR {(product.price * product.quantity).toFixed(2)}
+                  </td>
+                  <td className="px-6 py-4">
+                    <button
+                      onClick={() => handleDelete(product.id)}
+                      className="text-red-500 hover:text-red-700"
+                    >
+                      <Trash2 className="h-5 w-5" />
+                    </button>
                   </td>
                 </tr>
               ))}

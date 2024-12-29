@@ -9,7 +9,7 @@ const Navbar: React.FC<props>= ({navButton}) => {
 
   return (
     <div className="bg-[#1F1F1F] py-3 flex justify-center align-middle">
-      <div className="container flex justify-between">
+      <div className="container flex justify-between px-5">
         <img src={logo} alt="logo" className="h-12" />
         {navButton}
       </div>
