@@ -10,7 +10,7 @@ const app = express();
 const port = process.env.PORT || 4000;
 
 const allowedOrigins = [
-  "https://levitation-frontend-self.vercel.app",
+  "https://levitation-assignment-frontend.vercel.app/",
   "http://localhost:5173",
 ];
 
